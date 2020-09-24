@@ -8,7 +8,6 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-
     @Column
     private Integer id;
     @Column

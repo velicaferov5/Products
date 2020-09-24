@@ -1,0 +1,1 @@
+INSERT INTO product (type, name, description) VALUES ('Book', 'Life', 'Book about Life');

@@ -12,39 +12,30 @@ import java.util.Optional;
  * Services to manage product
  */
 @Service
-public class ManageService {
+public class ProductService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    public ManageService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    /*ProductRepository repository;
-
-    public ManageService(ProductRepository repository) {
-        this.repository = repository;
-    }
-    public Product insertProduct(Product product) {
-        repository.insert(product);
-        return product;
-    }*/
-
-    public Product getProductById(Integer id) {
-         Optional<Product> result = productRepository.findById(id);
-         return result.orElseGet(Product::new);
+    public Optional<Product> getProductById(Integer id) {
+         return productRepository.findById(id);
     }
 
     public Product addOrUpdateProduct(Product product) {
         return productRepository.save(product);
     }
 
-    public void removeProductById(int id) {
+    public boolean removeProductById(int id) {
         try {
             productRepository.deleteById(id);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

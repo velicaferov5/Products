@@ -10,7 +10,7 @@ public class Stock {
     @Column
     private Integer id;
     @Column
-    private Long amount;
+    private int amount;
     @OneToOne
     @MapsId
     private Product product;
@@ -23,11 +23,11 @@ public class Stock {
         this.id = id;
     }
 
-    public Long getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }
