@@ -11,6 +11,9 @@ Amount
 
 Orders have:
 ID
+Products
 State
 
-Products and stock can be inserted, get, update, removed and managed with REST services.
+Products, stock, order can be inserted, get, update, removed and managed with REST services.
+
+Requirement (Java version): 11
