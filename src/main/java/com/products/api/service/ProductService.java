@@ -21,7 +21,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Optional<Product> getProductById(Integer id) {
+    public Optional<Product> getProductById(int id) {
          return productRepository.findById(id);
     }
 

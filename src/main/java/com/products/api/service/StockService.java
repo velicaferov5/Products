@@ -22,9 +22,9 @@ public class StockService {
      * @param id
      * @return stock's id
      */
-    public int getStockAmountById(Integer id) {
+    public int getStockAmountById(int id) {
          Optional<Stock> result = stockRepository.findById(id);
-         return result.isPresent() ? result.get().getAmount() : 0;
+         return result.map(Stock::getAmount).orElse(0);
     }
 
     /**
@@ -35,12 +35,11 @@ public class StockService {
      */
     public Optional<Stock> addStock(int id, int amount) {
         try {
-            Integer newAmount = Math.max(getStockAmountById(id) + amount, 0);
+            int newAmount = Math.max(getStockAmountById(id) + amount, 0);
             Stock stock = new Stock();
             stock.setId(id);
             stock.setAmount(newAmount);
-            Optional<Stock> result = Optional.of(stockRepository.save(stock));
-            return result;
+            return Optional.of(stockRepository.save(stock));
         } catch(Exception e) {
             e.printStackTrace();
             return Optional.empty();

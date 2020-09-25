@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
@@ -32,12 +31,12 @@ class ProductServiceTest {
     void testGetProduct() {
         Optional<Product> product = Optional.of(newProduct());
         when(productRepository.findById(anyInt())).thenReturn(product);
-        Product actual = productService.getProductById(0).get();
-        assertProduct(product.get(), actual);
+        assertTrue(productService.getProductById(0).isPresent());
+        assertProduct(product.get(), productService.getProductById(0).get());
     }
 
     @Test
-    void testAddProduct() {
+    void addProduct() {
         Product product = newProduct();
         when(productRepository.save(any())).thenReturn(product);
         Product actual = productService.addOrUpdateProduct(product);
@@ -45,7 +44,7 @@ class ProductServiceTest {
     }
 
     @Test
-    void testRemoveProduct() {
+    void removeProduct() {
         assertTrue(productService.removeProductById(0));
     }
 
